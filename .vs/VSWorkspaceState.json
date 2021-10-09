@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\QuarterTemplate",
+    "\\QuarterTemplate\\QuarterTemplate",
+    "\\QuarterTemplate\\QuarterTemplate\\Data"
+  ],
+  "SelectedNode": "\\QuarterTemplate\\QuarterTemplate\\Data\\AppDbContext.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -19,8 +19,7 @@ namespace QuarterTemplate.Models
         [StringLength(maximumLength: 300)]
 
         public string Description { get; set; }
-        [StringLength(maximumLength: 150)]
+       
 
-        public string UrlText { get; set; }
     }
 }
