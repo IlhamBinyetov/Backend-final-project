@@ -16,7 +16,7 @@ namespace QuarterTemplate.Data
             
         }
 
-        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Slider> Sliders { get; set; } 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Contact> Contacts { get; set; }
