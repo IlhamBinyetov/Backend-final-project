@@ -33,8 +33,15 @@ using QuarterTemplate.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\Views\_ViewImports.cshtml"
+using QuarterTemplate.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f360654ef10b8e23aab1fd3317f0881efbe0f6c8", @"/Views/Team/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9a87e85869236e6d7f5ef4489c11a2bd125c7328", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a367a14248a69f40b4a4e449f0115145c3b6bbc0", @"/Views/_ViewImports.cshtml")]
     public class Views_Team_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Team>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString("Image"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -106,7 +113,7 @@ using QuarterTemplate.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("                        <div class=\"col-lg-4 col-sm-6\">\r\n                            <div class=\"ltn__team-item ltn__team-item-3---\">\r\n                                <div class=\"team-img\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f360654ef10b8e23aab1fd3317f0881efbe0f6c85717", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f360654ef10b8e23aab1fd3317f0881efbe0f6c85941", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

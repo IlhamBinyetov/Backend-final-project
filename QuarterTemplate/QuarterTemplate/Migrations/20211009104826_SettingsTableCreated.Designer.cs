@@ -2,21 +2,53 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuarterTemplate.Data;
 
 namespace QuarterTemplate.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211009104826_SettingsTableCreated")]
+    partial class SettingsTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.19")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("QuarterTemplate.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
 
             modelBuilder.Entity("QuarterTemplate.Models.Service", b =>
                 {
@@ -52,40 +84,10 @@ namespace QuarterTemplate.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EmailImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailLogo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FooterLogo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HeaderLogo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocationImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocationLogo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneLogo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondPhone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

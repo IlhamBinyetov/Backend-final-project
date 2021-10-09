@@ -33,8 +33,15 @@ using QuarterTemplate.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\Views\_ViewImports.cshtml"
+using QuarterTemplate.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"19bc184d464176e5430a55382416adaf33d2d126", @"/Views/Service/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9a87e85869236e6d7f5ef4489c11a2bd125c7328", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a367a14248a69f40b4a4e449f0115145c3b6bbc0", @"/Views/_ViewImports.cshtml")]
     public class Views_Service_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ServiceViewModel>
     {
         #pragma warning disable 1998

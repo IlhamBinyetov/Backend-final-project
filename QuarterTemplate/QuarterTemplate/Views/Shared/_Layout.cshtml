@@ -1,4 +1,14 @@
-﻿
+﻿@inject LayoutService service  
+
+
+@{
+    Setting setting = service.GetSetting();
+
+    SocialNetwork socialNetwork = service.GetSocialNetwork();
+
+}
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
