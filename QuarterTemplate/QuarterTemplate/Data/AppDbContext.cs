@@ -23,5 +23,9 @@ namespace QuarterTemplate.Data
         public DbSet<Setting> Settings { get; set; }
         public DbSet<AboutUs> AboutUses { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Aminity> Aminities { get; set; }
+        public DbSet<Status> Statuses { get; set; }
     }
 }

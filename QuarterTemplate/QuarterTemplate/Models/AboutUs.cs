@@ -30,6 +30,7 @@ namespace QuarterTemplate.Models
         [StringLength(maximumLength: 200)]
 
         public string Image2 { get; set; }
+        public List<About> Abouts { get; set; }
 
     }
 }
