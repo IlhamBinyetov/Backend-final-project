@@ -27,7 +27,10 @@ namespace QuarterTemplate.Controllers
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.OrderBy(x => x.Order).Skip(3).Take(3).ToList(),
                 AboutUses = _context.AboutUses.FirstOrDefault(),
-                Abouts = _context.Abouts.OrderBy(x => x.Order).ToList()
+                Abouts = _context.Abouts.OrderBy(x => x.Order).ToList(),
+                Cities = _context.Cities.ToList(),
+                Statuses = _context.Statuses.ToList(),
+                Categories = _context.Categories.ToList()
 
             };
 

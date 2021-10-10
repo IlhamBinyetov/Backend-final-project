@@ -9,5 +9,6 @@ namespace QuarterTemplate.ViewModels
     public class ServiceViewModel
     {
         public List<Service> Services { get; set; }
+        public AboutUs AboutUses { get; set; }
     }
 }
