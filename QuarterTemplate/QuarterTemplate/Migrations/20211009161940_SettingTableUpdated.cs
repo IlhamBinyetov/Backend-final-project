@@ -98,7 +98,7 @@ namespace QuarterTemplate.Migrations
                 name: "SecondEmail",
                 table: "Settings");
 
-            migrationBuilder.DropColumn(
+            migrationBuilder.DropColumn(    
                 name: "SecondPhone",
                 table: "Settings");
 

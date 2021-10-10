@@ -4,7 +4,7 @@
 @{
     Setting setting = service.GetSetting();
 
-    SocialNetwork socialNetwork = service.GetSocialNetwork();
+    List<SocialNetwork> socialNetworks = service.GetSocialNetwork();
 
 }
 
@@ -49,8 +49,8 @@
                         <div class="col-md-7">
                             <div class="ltn__top-bar-menu">
                                 <ul>
-                                    <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> info@webmail.com</a></li>
-                                    <li><a href="locations.html"><i class="icon-placeholder"></i> 15/A, Nest Tower, NYC</a></li>
+                                    <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="@setting.EmailLogo"></i> @setting.MainEmail</a></li>
+                                    <li><a href="locations.html"><i class="@setting.LocationLogo"></i> @setting.Location1</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -80,11 +80,11 @@
                                             <!-- ltn__social-media -->
                                             <div class="ltn__social-media">
                                                 <ul>
-                                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-
-                                                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                                    <li><a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
+                                                    @foreach (var item in socialNetworks)
+	                                                {
+                                                        <li><a href="@item.RedirectUrl" title="@item.Name"><i class="@item.Icon"></i></a></li>
+	                                                }
+                                                    
                                                 </ul>
                                             </div>
                                         </li>
@@ -551,36 +551,39 @@
                                     <ul>
                                         <li>
                                             <div class="footer-address-icon">
-                                                <i class="icon-placeholder"></i>
+                                                <i class="@setting.LocationLogo"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p>Brooklyn, New York, United States</p>
+                                                <p>@setting.Location2</p>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="footer-address-icon">
-                                                <i class="icon-call"></i>
+                                                <i class="@setting.PhoneLogo"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p><a href="tel:+0123-456789">+0123-456789</a></p>
+                                                <p><a href="tel:+0123-456789">+@setting.MainPhone</a></p>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="footer-address-icon">
-                                                <i class="icon-mail"></i>
+                                                <i class="@setting.EmailLogo"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p><a href="mailto:example@example.com">example@example.com</a></p>
+                                                <p><a href="mailto:example@example.com">@setting.SecondEmail</a></p>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="ltn__social-media mt-20">
                                     <ul>
-                                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+
+                                        @foreach (var item in socialNetworks)
+                                        {
+                                            <li><a href="@item.RedirectUrl" title="@item.Name"><i class="@item.Icon"></i></a></li>
+                                        }
+
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -761,10 +764,12 @@
                                                 <div class="ltn__social-media">
                                                     <ul>
                                                         <li>Share:</li>
-                                                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                                        <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                                        <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                                        @foreach (var item in socialNetworks)
+                                                        {
+                                                            <li><a href="@item.RedirectUrl" title="@item.Name"><i class="@item.Icon"></i></a></li>
+                                                        }
+
+                                                        
 
                                                     </ul>
                                                 </div>

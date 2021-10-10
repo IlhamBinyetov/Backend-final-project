@@ -10,6 +10,9 @@ namespace QuarterTemplate.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Service> Services { get; set; }
+        public AboutUs AboutUses { get; set; }
+        public List<About> Abouts { get; set; }
+
       
     }
 }

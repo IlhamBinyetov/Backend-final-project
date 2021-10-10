@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20211010073334_AboutUsTableCreated.cs" />
+    <Compile Remove="Migrations\20211010073334_AboutUsTableCreated.Designer.cs" />
     <Compile Remove="Models\Contact.cs" />
   </ItemGroup>
 

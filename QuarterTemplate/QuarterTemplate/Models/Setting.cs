@@ -20,5 +20,8 @@ namespace QuarterTemplate.Models
         public string PhoneLogo { get; set; }
         public string LocationLogo { get; set; }
         public string LocationImage { get; set; }
+        public string Location1 { get; set; }
+        public string Location2 { get; set; }
+        public string Location3 { get; set; }
     }
 }

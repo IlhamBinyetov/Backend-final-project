@@ -21,5 +21,7 @@ namespace QuarterTemplate.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<AboutUs> AboutUses { get; set; }
+        public DbSet<About> Abouts { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace QuarterTemplate.Services
             return _context.Settings.FirstOrDefault();
         }
 
-        public SocialNetwork GetSocialNetwork()
+        public List<SocialNetwork> GetSocialNetwork()
         {
-            return _context.SocialNetworks.FirstOrDefault();
+            return _context.SocialNetworks.ToList();
         }
     }
 }
