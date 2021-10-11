@@ -24,5 +24,6 @@ namespace QuarterTemplate.Models
         [StringLength(maximumLength: 150)]
 
         public string LinkedinUrl { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

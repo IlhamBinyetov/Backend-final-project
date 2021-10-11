@@ -15,7 +15,7 @@ namespace QuarterTemplate.Models
         public DateTime CreatedDate { get; set; }
         [StringLength(maximumLength:100)]
         public string Location { get; set; }
-        [StringLength(maximumLength: 200)]
+        [StringLength(maximumLength: 2000)]
 
         
         public string Description { get; set; }
@@ -30,6 +30,7 @@ namespace QuarterTemplate.Models
         public int BathCount { get; set; }
         [StringLength(maximumLength: 100)]
         public decimal Price { get; set; }
+        public bool IsFeature { get; set; } 
         public List<ProductAminity> productAminities { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public Status Status { get; set; }
@@ -39,6 +40,9 @@ namespace QuarterTemplate.Models
 
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+
+        public Team Team { get; set; }
+        public int TeamId { get; set; }
        
 
     }

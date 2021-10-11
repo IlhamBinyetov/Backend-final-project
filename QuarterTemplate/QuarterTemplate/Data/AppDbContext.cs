@@ -27,5 +27,6 @@ namespace QuarterTemplate.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Aminity> Aminities { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

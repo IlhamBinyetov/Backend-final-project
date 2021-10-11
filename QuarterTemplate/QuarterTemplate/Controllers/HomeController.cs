@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using QuarterTemplate.Data;
 using QuarterTemplate.Models;
@@ -30,7 +31,9 @@ namespace QuarterTemplate.Controllers
                 Abouts = _context.Abouts.OrderBy(x => x.Order).ToList(),
                 Cities = _context.Cities.ToList(),
                 Statuses = _context.Statuses.ToList(),
-                Categories = _context.Categories.ToList()
+                Categories = _context.Categories.ToList(),
+                Aminities = _context.Aminities.ToList(),
+                Products = _context.Products.Include(x=>x.Status).Include(x=>x.ProductImages).Include(x=>x.Team).ToList()
 
             };
 

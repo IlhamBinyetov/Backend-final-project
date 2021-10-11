@@ -165,12 +165,15 @@ namespace QuarterTemplate.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
 
                     b.Property<decimal>("HomeArea")
                         .HasColumnType("decimal(18,2)")
                         .HasMaxLength(100);
+
+                    b.Property<bool>("IsFeature")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(100)")
@@ -191,6 +194,9 @@ namespace QuarterTemplate.Migrations
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -199,7 +205,9 @@ namespace QuarterTemplate.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("Product");
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("QuarterTemplate.Models.ProductAminity", b =>
@@ -280,6 +288,9 @@ namespace QuarterTemplate.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BackgroundImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmailImage")
                         .HasColumnType("nvarchar(max)");
@@ -464,7 +475,7 @@ namespace QuarterTemplate.Migrations
             modelBuilder.Entity("QuarterTemplate.Models.Product", b =>
                 {
                     b.HasOne("QuarterTemplate.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -476,8 +487,14 @@ namespace QuarterTemplate.Migrations
                         .IsRequired();
 
                     b.HasOne("QuarterTemplate.Models.Status", "Status")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuarterTemplate.Models.Team", "Team")
+                        .WithMany("Products")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

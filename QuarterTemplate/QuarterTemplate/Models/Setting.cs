@@ -23,5 +23,6 @@ namespace QuarterTemplate.Models
         public string Location1 { get; set; }
         public string Location2 { get; set; }
         public string Location3 { get; set; }
+        public String BackgroundImage { get; set; }
     }
 }
