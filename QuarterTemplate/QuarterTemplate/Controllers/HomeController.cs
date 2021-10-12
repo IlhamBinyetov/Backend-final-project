@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using QuarterTemplate.Data;
 using QuarterTemplate.Models;
 using QuarterTemplate.ViewModels;
@@ -40,8 +41,59 @@ namespace QuarterTemplate.Controllers
             return View(homeVm);
         }
 
-       
+        public IActionResult AddProduct(int id)
+        {
+            Product product = _context.Products.Include(x=>x.ProductImages).FirstOrDefault(x => x.Id == id);
 
-       
+            List<FavoriteViewModel> favorites = new List<FavoriteViewModel>();
+            string namesStr;
+            FavoriteViewModel favorite = null;
+
+            if (HttpContext.Request.Cookies["ProductNames"] != null)
+            {
+                namesStr = HttpContext.Request.Cookies["ProductNames"];
+                favorites = JsonConvert.DeserializeObject<List<FavoriteViewModel>>(namesStr);
+                favorite = favorites.FirstOrDefault(x => x.ProductId == product.Id);
+            }
+            if(favorite==null)
+            {
+                favorite = new FavoriteViewModel
+                {
+                    Count = 1,
+                    ProductId = product.Id,
+                    Image = product.ProductImages.FirstOrDefault(x => x.IsPoster)?.Image,
+                    Name = product.Name,
+                    Price = (double)product.Price
+                };
+                favorites.Add(favorite);
+
+            }
+            else
+            {
+                favorite.Count++;
+            }
+
+            namesStr = JsonConvert.SerializeObject(favorites);
+            HttpContext.Response.Cookies.Append("ProductNames", namesStr);
+
+
+            return PartialView("_FavouritePartial", favorites);
+        }
+
+        public IActionResult ShowProducts()
+        {
+            var productsStr = HttpContext.Request.Cookies["ProductNames"];
+
+            List<FavoriteViewModel> products = JsonConvert.DeserializeObject<List<FavoriteViewModel>>(productsStr);
+
+            return PartialView("_FavouritePartial", products);
+        }
+        public IActionResult DeleteCookie(string key)
+        {
+            HttpContext.Response.Cookies.Delete(key);
+            return RedirectToAction("index");
+        }
+
+
     }
 }

@@ -3,10 +3,11 @@
     "",
     "\\QuarterTemplate",
     "\\QuarterTemplate\\QuarterTemplate",
-    "\\QuarterTemplate\\QuarterTemplate\\Data",
+    "\\QuarterTemplate\\QuarterTemplate\\Controllers",
     "\\QuarterTemplate\\QuarterTemplate\\Views",
-    "\\QuarterTemplate\\QuarterTemplate\\Views\\Home"
+    "\\QuarterTemplate\\QuarterTemplate\\Views\\Home",
+    "\\QuarterTemplate\\QuarterTemplate\\Views\\Product"
   ],
-  "SelectedNode": "\\QuarterTemplate\\QuarterTemplate\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\QuarterTemplate\\QuarterTemplate\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }

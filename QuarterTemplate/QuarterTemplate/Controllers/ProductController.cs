@@ -25,7 +25,7 @@ namespace QuarterTemplate.Controllers
                 Categories = _context.Categories.ToList(),
                 Aminities = _context.Aminities.ToList(),
                 Statuses = _context.Statuses.ToList(),
-                Products = _context.Products.Include(x=>x.ProductImages).Include(x=>x.City).Include(x=>x.Status).Include(x=>x.Team).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).ToList()
+                Products = _context.Products.Include(x=>x.ProductImages).Include(x=>x.City).Include(x=>x.Category).Include(x=>x.Status).Include(x=>x.Team).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).ToList()
             };
 
             return View(productVM);
@@ -33,10 +33,16 @@ namespace QuarterTemplate.Controllers
 
         public IActionResult Details(int Id)
         {
-           Product product  = _context.Products.Include(x => x.ProductImages).Include(x => x.City).Include(x => x.Status).Include(x => x.Team)
-                           .Include(x => x.productAminities).ThenInclude(x => x.Aminity).FirstOrDefault(x=>x.Id == Id);
+            DetailViewModel detailVM = new DetailViewModel
+            {
+                Product = _context.Products.Include(x => x.ProductImages).Include(x => x.City).Include(x => x.Status).Include(x => x.Team).Include(x => x.productAminities).ThenInclude(x => x.Aminity).FirstOrDefault(x => x.Id == Id),
+                Categories = _context.Categories.Include(x=>x.Products).ToList()
+            };
 
-            return View(product);
+            return View(detailVM);
+
+
         }
     }
 }
+

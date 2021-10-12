@@ -1,0 +1,44 @@
+﻿@model Service
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <h1>Create</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Description">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Description">
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="Order">Order</label>
+                <input asp-for="Order" class="form-control" placeholder="Order">
+                <span class="text-danger" asp-validation-for="Order"></span>
+            </div>
+            <div class="form-group col-md-6">
+            <label asp-for="Icon">Icon</label>
+            <select class="form-control" asp-for="Icon" asp-items="@(new SelectList(ViewBag.Icons, "Icon", "Icon"))">
+               
+            </select>
+            </div>
+
+        </div>
+        <br />
+        <br />  
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+
+    </form>
+</div>
+
