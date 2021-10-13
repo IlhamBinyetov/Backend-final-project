@@ -145,8 +145,7 @@ namespace QuarterTemplate.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BathCount")
-                        .HasColumnType("int")
-                        .HasMaxLength(100);
+                        .HasColumnType("int");
 
                     b.Property<int>("BedCount")
                         .HasColumnType("int");
@@ -169,8 +168,7 @@ namespace QuarterTemplate.Migrations
                         .HasMaxLength(2000);
 
                     b.Property<decimal>("HomeArea")
-                        .HasColumnType("decimal(18,2)")
-                        .HasMaxLength(100);
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsFeature")
                         .HasColumnType("bit");
@@ -184,12 +182,10 @@ namespace QuarterTemplate.Migrations
                         .HasMaxLength(100);
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)")
-                        .HasMaxLength(100);
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("RoomCount")
-                        .HasColumnType("int")
-                        .HasMaxLength(100);
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
@@ -252,7 +248,7 @@ namespace QuarterTemplate.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImage");
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("QuarterTemplate.Models.Service", b =>

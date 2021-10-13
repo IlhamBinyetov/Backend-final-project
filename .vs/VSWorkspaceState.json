@@ -6,11 +6,12 @@
     "\\QuarterTemplate\\QuarterTemplate\\Areas",
     "\\QuarterTemplate\\QuarterTemplate\\Areas\\Manage",
     "\\QuarterTemplate\\QuarterTemplate\\Areas\\Manage\\Controllers",
+    "\\QuarterTemplate\\QuarterTemplate\\Controllers",
     "\\QuarterTemplate\\QuarterTemplate\\Services",
     "\\QuarterTemplate\\QuarterTemplate\\Views",
     "\\QuarterTemplate\\QuarterTemplate\\Views\\Home",
     "\\QuarterTemplate\\QuarterTemplate\\Views\\Product"
   ],
-  "SelectedNode": "\\QuarterTemplate\\QuarterTemplate\\Areas\\Manage\\Controllers\\AboutController.cs",
+  "SelectedNode": "\\QuarterTemplate\\QuarterTemplate.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -28,5 +28,6 @@ namespace QuarterTemplate.Data
         public DbSet<Aminity> Aminities { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
     }
 }

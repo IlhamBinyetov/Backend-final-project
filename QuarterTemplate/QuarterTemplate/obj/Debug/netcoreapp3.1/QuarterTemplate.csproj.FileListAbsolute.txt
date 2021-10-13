@@ -179,5 +179,10 @@ C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemp
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\About\Create.cshtml.g.cs
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\About\Edit.cshtml.g.cs
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Edit.cshtml.g.cs
-C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\QuarterTemplate.csproj.AssemblyReference.cache
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Index.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Create.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\QuarterTemplate.csproj.AssemblyReference.cache
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Edit.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Index.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Edit.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Create.cshtml.g.cs

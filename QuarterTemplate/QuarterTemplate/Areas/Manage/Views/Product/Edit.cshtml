@@ -1,0 +1,128 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid">
+    <h1>Edit</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Location">Location</label>
+                <input asp-for="Location" class="form-control" placeholder="Location">
+                <span class="text-danger" asp-validation-for="Location"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="TeamId">Team</label>
+                <select asp-for="TeamId" class="form-control" id="TeamId" asp-items="@(new SelectList(ViewBag.Teams,"Id","Name"))">
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="CityId">City</label>
+                <select asp-for="CityId" class="form-control" id="CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))">
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="CategoryId">Category</label>
+                <select asp-for="CategoryId" class="form-control" id="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="AminityIds">Aminities</label>
+                <select asp-for="AminityIds" class="form-control" id="AminityIds" asp-items="@(new SelectList(ViewBag.Aminities,"Id","Title"))">
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="StatusId">Statuses</label>
+                <select asp-for="StatusId" class="form-control" id="StatusId" asp-items="@(new SelectList(ViewBag.Statuses,"Id","Name"))">
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" class="form-control" placeholder="Price">
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="BedCount">BedCount</label>
+                <input asp-for="BedCount" class="form-control" placeholder="BedCount">
+                <span class="text-danger" asp-validation-for="BedCount"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="RoomCount">RoomCount</label>
+                <input asp-for="RoomCount" class="form-control" placeholder="RoomCount">
+                <span class="text-danger" asp-validation-for="RoomCount"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="BathCount">BathCount</label>
+                <input asp-for="BathCount" class="form-control" placeholder="BathCount">
+                <span class="text-danger" asp-validation-for="BathCount"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="HomeArea">HomeArea</label>
+                <label asp-for="HomeArea" class="form-control">HomeArea</label>
+                <span class="text-danger" asp-validation-for="HomeArea"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <input asp-for="IsFeature" class="form-check-input" placeholder="IsFeature">
+                <label asp-for="IsFeature" class="form-check-label">IsFeature</label>
+                <span class="text-danger" asp-validation-for="IsFeature"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="BuiltDate">BuiltDate</label>
+                <input asp-for="BuiltDate" class="form-control" placeholder="BuiltDate">
+                <span class="text-danger" asp-validation-for="BuiltDate"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="PosterFile">PosterFile</label>
+                <input asp-for="PosterFile" class="form-control" placeholder="PosterFile">
+                <span class="text-danger" asp-validation-for="PosterFile"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="ImageFiles">ImageFiles</label>
+                <input asp-for="ImageFiles" class="form-control" placeholder="ImageFiles">
+                <span class="text-danger" asp-validation-for="ImageFiles"></span>
+            </div>
+            @foreach (var file in Model.ProductImages.Where(x => x.IsPoster == false))
+            {
+                <div>
+
+                    <div class="img-box" style="display: inline-block; position: relative;margin-right:8px">
+                        <input type="hidden" name="ProductImageIds[]" value="@file.Id" />
+                        <img style="max-width:150px" src="~/uploads/products/@file.Image" alt="Alternate Text" />
+                        <span class="remove-img-box" style="position: absolute; top: -10px; right: -5px; cursor:pointer">
+                            <i class="fa fa-times" style="color: red; font-size: 24px;"></i>
+                        </span>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+
+    </form>
+</div>
+

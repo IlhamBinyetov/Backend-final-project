@@ -19,18 +19,17 @@ namespace QuarterTemplate.Models
         public string Location { get; set; }
         [StringLength(maximumLength: 2000)]
 
-        
         public string Description { get; set; }
-        [StringLength(maximumLength: 100)]
+        
         public decimal HomeArea { get; set; }
         [StringLength(maximumLength:100)]
         public string BuiltDate { get; set; }
         public int BedCount { get; set; }
-        [StringLength(maximumLength: 100)]
+        
         public int RoomCount { get; set; }
-        [StringLength(maximumLength: 100)]
+       
         public int BathCount { get; set; }
-        [StringLength(maximumLength: 100)]
+        
         public decimal Price { get; set; }
         public bool IsFeature { get; set; } 
         public List<ProductAminity> productAminities { get; set; }
@@ -52,6 +51,12 @@ namespace QuarterTemplate.Models
 
         [NotMapped]
         public List<IFormFile> ImageFiles { get; set; }
+
+        [NotMapped]
+        public List<int> AminityIds { get; set; } = new List<int>();
+
+        [NotMapped]
+        public List<int> ProductImageIds { get; set; } = new List<int>();
 
 
 
