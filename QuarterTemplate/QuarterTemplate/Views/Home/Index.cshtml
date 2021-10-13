@@ -222,7 +222,7 @@
                                 </p>
                             </div>
                             <ul class="ltn__list-item-half clearfix">
-                                @foreach (var item in @Model.Abouts)
+                                @foreach (var item in Model.Abouts)
                                 {
                                     <li>
                                         <i class="@item.Icon"></i>
@@ -461,7 +461,7 @@
                                 <div class="product-info-bottom">
                                     <div class="real-estate-agent">
                                         <div class="agent-img">
-                                            <a href="team-details.html"><img src="~/assets/images/blog/author.jpg" alt="#"></a>
+                                            <a href="team-details.html"><img src="~/assets/images/blog/@item.ProductImages." alt="#"></a>
                                         </div>
                                         <div class="agent-brief">
                                             <h6><a href="team-details.html">William Seklo</a></h6>
@@ -502,7 +502,7 @@
        
         <!-- VIDEO AREA START -->
         <div class="ltn__video-popup-area ltn__video-popup-margin---">
-            <div class="ltn__video-bg-img ltn__video-popup-height-600--- bg-overlay-black-30 bg-image bg-fixed ltn__animation-pulse1" data-bs-bg="../assets/images/bg/19.jpg">
+            <div class="ltn__video-bg-img ltn__video-popup-height-600--- bg-overlay-black-30 bg-image bg-fixed ltn__animation-pulse1" data-bs-bg="../uploads/settings/@Model.Settings.FirstOrDefault().BackgroundImage">
                 <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="https://www.youtube.com/embed/X7R-q9rsrtU?autoplay=1&showinfo=0" data-rel="lightcase:myCollection">
                     <i class="fa fa-play"></i>
                 </a>

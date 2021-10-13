@@ -31,6 +31,7 @@ namespace QuarterTemplate.Controllers
                 AboutUses = _context.AboutUses.FirstOrDefault(),
                 Abouts = _context.Abouts.OrderBy(x => x.Order).ToList(),
                 Cities = _context.Cities.ToList(),
+                Settings = _context.Settings.ToList(),
                 Statuses = _context.Statuses.ToList(),
                 Categories = _context.Categories.ToList(),
                 Aminities = _context.Aminities.ToList(),

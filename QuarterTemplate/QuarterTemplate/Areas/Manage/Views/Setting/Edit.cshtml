@@ -1,0 +1,89 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid">
+    <h1>Create</h1>
+    <form method="post" enctype="multipart/form-data">
+       
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Location1">MainLocation</label>
+                <input asp-for="Location1" class="form-control" placeholder="Location">
+                <span class="text-danger" asp-validation-for="Location1"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Location2">SecondLocation</label>
+                <input asp-for="Location2" class="form-control" placeholder="Location">
+                <span class="text-danger" asp-validation-for="Location2"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Location3">ThirdLocation</label>
+                <input asp-for="Location3" class="form-control" placeholder="Location">
+                <span class="text-danger" asp-validation-for="Location3"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="MainPhone">MainPhone</label>
+                <input asp-for="MainPhone" class="form-control" placeholder="Order">
+                <span class="text-danger" asp-validation-for="MainPhone"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="SecondPhone">SecondPhone</label>
+                <input asp-for="SecondPhone" class="form-control" placeholder="SecondPhone">
+                <span class="text-danger" asp-validation-for="SecondPhone"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="MainEmail">Email</label>
+                <input asp-for="MainEmail" class="form-control" placeholder="MainEmail">
+                <span class="text-danger" asp-validation-for="MainEmail"></span>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="SecondEmail">Email</label>
+            <input asp-for="SecondEmail" class="form-control" placeholder="SecondEmail">
+            <span class="text-danger" asp-validation-for="SecondEmail"></span>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="HeaderImg">HeaderLogo</label>
+                <input asp-for="HeaderImg" class="form-control" placeholder="HeaderImg">
+                <span class="text-danger" asp-validation-for="HeaderImg"></span>
+            </div>
+            <div class="img-box mt-5" style="display: inline-block; position: relative;">
+                <input type="hidden" asp-for="HeaderLogo" value="@Model.HeaderLogo" />
+                <img style="max-width:100px" src="~/uploads/settings/@Model.HeaderLogo" alt="Alternate Text" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="FooterImg">FooterLogo</label>
+                <input asp-for="FooterImg" class="form-control" placeholder="FooterImg">
+                <span class="text-danger" asp-validation-for="FooterImg"></span>
+            </div>
+            <div class="img-box mt-5" style="display: inline-block; position: relative;">
+                <input type="hidden" asp-for="FooterLogo" value="@Model.FooterLogo" />
+                <img style="max-width:100px" src="~/uploads/settings/@Model.FooterLogo" alt="Alternate Text" /> 
+            </div>
+
+            <div class="form-group col-md-4">
+                <label asp-for="BgImg">BackgroundImage</label>
+                <input asp-for="BgImg" class="form-control" placeholder="BackgroundImage">
+                <span class="text-danger" asp-validation-for="BgImg"></span>
+            </div>
+            <div class="img-box mt-5" style="display: inline-block; position: relative;">
+                <input type="hidden" asp-for="BackgroundImage" value="@Model.BackgroundImage" />
+                <img style="max-width:100px" src="~/uploads/settings/@Model.BackgroundImage" alt="Alternate Text" />
+            </div>
+        </div>
+
+            <br />
+            <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+</form>
+</div>
+

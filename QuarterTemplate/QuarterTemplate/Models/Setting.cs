@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +25,15 @@ namespace QuarterTemplate.Models
         public string Location1 { get; set; }
         public string Location2 { get; set; }
         public string Location3 { get; set; }
-        public String BackgroundImage { get; set; }
+        public string BackgroundImage { get; set; }
+
+        [NotMapped]
+        public IFormFile HeaderImg { get; set; }
+
+        [NotMapped]
+        public IFormFile FooterImg { get; set; }
+
+        [NotMapped]
+        public IFormFile BgImg { get; set; }
     }
 }

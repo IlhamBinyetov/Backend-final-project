@@ -1,0 +1,66 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid">
+    <h1>Create</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Title">Title</label>
+                <input asp-for="@Model.Title" class="form-control" placeholder="Title">
+                <span class="text-danger" asp-validation-for="@Model.Title"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.AboutUs.Description1">Description</label>
+                <input asp-for="@Model.AboutUs.Description1" class="form-control" placeholder="Description">
+                <span class="text-danger" asp-validation-for="@Model.AboutUs.Description1"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.AboutUs.Title">Title</label>
+                <input asp-for="@Model.AboutUs.Title" class="form-control" placeholder="Title">
+                <span class="text-danger" asp-validation-for="@Model.AboutUs.Title"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.AboutUs.Description2">Description</label>
+                <input asp-for="@Model.AboutUs.Description2" class="form-control" placeholder="Description">
+                <span class="text-danger" asp-validation-for="@Model.AboutUs.Description2"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="@Model.Order">Order</label>
+                <input asp-for="@Model.Order" class="form-control" placeholder="Order">
+                <span class="text-danger" asp-validation-for="@Model.Order"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Icon">Icon</label>
+                <select class="form-control" asp-for="@Model.Icon" asp-items="@(new SelectList(ViewBag.Icons, "Icon", "Icon"))">
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.AboutUs.MainImageFile">ImageFile</label>
+                <input asp-for="@Model.AboutUs.MainImageFile" class="form-control" placeholder="ImageFile">
+                <span class="text-danger" asp-validation-for="@Model.AboutUs.MainImageFile"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.AboutUs.SecondImageFile">ImageFile</label>
+                <input asp-for="@Model.AboutUs.SecondImageFile" class="form-control" placeholder="ImageFile">
+                <span class="text-danger" asp-validation-for="@Model.AboutUs.SecondImageFile"></span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+
+    </form>
+</div>
+
