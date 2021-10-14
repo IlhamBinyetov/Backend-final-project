@@ -1837,9 +1837,4 @@
     <None Include="wwwroot\manage\vendor\jquery\jquery.slim.min.map" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Manage\Data\" />
-    <Folder Include="Areas\Manage\Models\" />
-  </ItemGroup>
-
 </Project>

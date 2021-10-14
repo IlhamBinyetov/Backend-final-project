@@ -97,7 +97,16 @@
                 <input asp-for="PosterFile" class="form-control" placeholder="PosterFile">
                 <span class="text-danger" asp-validation-for="PosterFile"></span>
             </div>
+            <div class="img-box" style="display: inline-block; position: relative;margin-right:8px">
+                <input type="hidden" name="PosterImageId" value="@Model.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Id" />
+                <img style="max-width:150px" src="~/uploads/products/@Model.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="Alternate Text" />
+                <span class="remove-img-box" style="position: absolute; top: -10px; right: -5px; cursor:pointer">
+                    <i class="fa fa-times" style="color: red; font-size: 24px;"></i>
+                </span>
+            </div>
         </div>
+        <br />
+        <br />
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label asp-for="ImageFiles">ImageFiles</label>

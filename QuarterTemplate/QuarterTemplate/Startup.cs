@@ -46,6 +46,7 @@ namespace QuarterTemplate
 
             services.AddScoped<LayoutService>();
             services.AddHttpContextAccessor();
+            services.AddSession();
 
         }
 
@@ -73,7 +74,9 @@ namespace QuarterTemplate
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

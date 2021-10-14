@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuarterTemplate.Data;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace QuarterTemplate.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -300,7 +302,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
         public IActionResult DeleteFetch(int id)
         {
-            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+            Product product = _context.Products.Include(x=>x.ProductImages).FirstOrDefault(x => x.Id == id);
 
             if (product == null) return Json(new { status = 404 });
 
@@ -313,13 +315,16 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             {
                 return Json(new { status = 500 });
             }
-            //string deletePath = Path.Combine(_env.WebRootPath, "uploads/products", product.ProductImages.FirstOrDefault(x=>x.ProductId==x));
 
-            //if (System.IO.File.Exists(deletePath))
-            //{
-            //    System.IO.File.Delete(deletePath);
-            //}
-
+            List<ProductImage> images = product.ProductImages.Where(x => x.ProductId == id).ToList();
+            foreach (ProductImage img in images)
+            {
+                string deletePath = Path.Combine(_env.WebRootPath, "uploads/products", img.Image);
+                if (System.IO.File.Exists(deletePath))
+                {
+                    System.IO.File.Delete(deletePath);
+                }
+            }
             return Json(new { status = 200 });
         }
 
