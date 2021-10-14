@@ -32,5 +32,6 @@ namespace QuarterTemplate.Data
         public DbSet<ProductImage> ProductImages { get; set; }
 
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

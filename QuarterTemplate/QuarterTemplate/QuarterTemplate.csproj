@@ -14,6 +14,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20211010073334_AboutUsTableCreated.cs" />
     <Compile Remove="Migrations\20211010073334_AboutUsTableCreated.Designer.cs" />
+    <Compile Remove="Migrations\20211014140927_OrdersTableCreated.cs" />
+    <Compile Remove="Migrations\20211014140927_OrdersTableCreated.Designer.cs" />
     <Compile Remove="Models\Contact.cs" />
     <Compile Remove="ViewModels\FavouriteViewModel.cs" />
   </ItemGroup>
