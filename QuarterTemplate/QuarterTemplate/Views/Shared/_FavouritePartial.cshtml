@@ -17,13 +17,15 @@
                 <span class="ltn__utilize-menu-title">Cart</span>
                 <button class="ltn__utilize-close">×</button>
             </div>
-            <div class="mini-cart-product-area ltn__scrollbar ">
+            <div class="mini-cart-product-area ltn__scrollbar " id="favorite" data-favorite-count="@Model.Count">
                 @foreach (var item in Model)
                 {
                     <div class="mini-cart-item clearfix">
                         <div class="mini-cart-img">
-                            <a href="#"><img src="~/assets/images/product-3/@item.Image" alt="Image"></a>
-                            <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
+                            <a href="#"><img src="~/uploads/products/@item.Image" alt="Image"></a>
+                            <a class="deleteFav" data-id="@item.ProductId" asp-action="deletefavorites" asp-controller="product" asp-route-id="@item.ProductId">
+                                <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
+                            </a>
                         </div>
                         <div class="mini-cart-info">
                             <h6><a href="#">@item.Name</a></h6>
@@ -36,7 +38,7 @@
             </div>
             <div class="mini-cart-footer">
                 <div class="mini-cart-sub-total">
-                    <h5>=Total: <span>@TotalCount</span></h5>
+                    <h5>=Total: <span>$@TotalCount</span></h5>
                 </div>
             </div>
 

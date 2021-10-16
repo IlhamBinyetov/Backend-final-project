@@ -86,17 +86,17 @@
                                             <div class="col-xl-6 col-sm-6 col-12">
                                                 <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                                     <div class="product-img">
-                                                        <a asp-controller="product" asp-action="details" asp-route-id="@item.Id"><img src="~/assets/images/product-3/@item.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="#"></a>
+                                                        <a asp-controller="product" asp-action="details" asp-route-id="@item.Id"><img src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="#"></a>
                                                         <div class="real-estate-agent">
                                                             <div class="agent-img">
-                                                                <a href="team-details.html"><img src="~/assets/images/team/@item.Team.Image" alt="#"></a>
+                                                                <a href="team-details.html"><img src="~/uploads/teams/@item.Team.Image" alt="#"></a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="product-info">
                                                         <div class="product-badge">
                                                             <ul>
-                                                                <li class="sale-badg">@item.Status</li>
+                                                                <li class="sale-badg">@item.Status.Name</li>
                                                             </ul>
                                                         </div>
                                                         <h2 class="product-title"><a asp-controller="product" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h2>

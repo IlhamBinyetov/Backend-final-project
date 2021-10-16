@@ -21,10 +21,30 @@ namespace QuarterTemplate.Controllers
         }
 
         [Authorize(Roles = "Member")]
-        public IActionResult Index()
+        public IActionResult CreateOrder(int id)
         {
-            //List<Order> orders = _context.Orders.Include(x => x.OrderItems).Where(x => x.AppUser.UserName == User.Identity.Name).ToList();
-            return View();
+            AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+            Product product = _context.Products.FirstOrDefault(x => x.Id == id);
+
+            Order order = new Order
+            {
+                ProductId = product.Id,
+                AppUserId = member.Id,
+                FullName = member.Fullname,
+                Email = member.Email,
+                CreatedAt = DateTime.UtcNow,
+                Status = Models.Enums.OrderStatus.Pending,
+                Price = (double)product.Price
+
+            };
+
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+
+            return RedirectToAction("profile", "account");
         }
+        
+        
+
     }
 }

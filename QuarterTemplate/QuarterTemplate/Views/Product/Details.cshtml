@@ -69,6 +69,13 @@
                                     <li>
                                         <a href="#"><i class="far fa-comments"></i>35Comments</a>
                                     </li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li>
+                                           <a asp-action="createorder" asp-controller="order" asp-route-id="@Model.Product.Id" class="bg-green p-2">BUY HOME</a>
+                                        </li>
+                                    }
+                                
                                 </ul>
                             </div>
                             <h1>@Model.Product.Name</h1>

@@ -339,6 +339,31 @@ namespace QuarterTemplate.Migrations
                     b.ToTable("Cities");
                 });
 
+            modelBuilder.Entity("QuarterTemplate.Models.FavoriteItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("FavoriteItems");
+                });
+
             modelBuilder.Entity("QuarterTemplate.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -367,7 +392,6 @@ namespace QuarterTemplate.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
@@ -435,6 +459,9 @@ namespace QuarterTemplate.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
 
                     b.Property<int>("RoomCount")
                         .HasColumnType("int");
@@ -780,6 +807,19 @@ namespace QuarterTemplate.Migrations
                     b.HasOne("QuarterTemplate.Models.AboutUs", "AboutUs")
                         .WithMany("Abouts")
                         .HasForeignKey("AboutUsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuarterTemplate.Models.FavoriteItem", b =>
+                {
+                    b.HasOne("QuarterTemplate.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("QuarterTemplate.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

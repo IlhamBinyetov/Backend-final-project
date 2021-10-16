@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QuarterTemplate.Data;
 using QuarterTemplate.Models;
 using QuarterTemplate.ViewModels;
 using System;
@@ -15,11 +16,13 @@ namespace QuarterTemplate.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -117,7 +120,7 @@ namespace QuarterTemplate.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Member")]
+        [Authorize(Roles ="Member")]
         public async Task<IActionResult> Profile()
         {
             AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -128,6 +131,7 @@ namespace QuarterTemplate.Controllers
                 FullName = member.Fullname,
                 PhoneNumber = member.PhoneNumber,
                 UserName = member.UserName,
+                Orders = _context.Orders.Include(x=>x.Product).Where(x=>x.AppUserId==member.Id).ToList()
                 
             };
 

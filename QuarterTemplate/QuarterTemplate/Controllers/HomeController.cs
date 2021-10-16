@@ -24,6 +24,15 @@ namespace QuarterTemplate.Controllers
         
         public IActionResult Index()
         {
+            string str = HttpContext.Request.Cookies["Product"];
+            ViewBag.Favorites = null;
+            if (str != null)
+            {
+                ViewBag.Favorites = JsonConvert.DeserializeObject<List<FavoriteViewModel>>(str);
+            }
+
+
+
             HomeViewModel homeVm = new HomeViewModel()
             {
                 Sliders = _context.Sliders.ToList(),
@@ -35,6 +44,7 @@ namespace QuarterTemplate.Controllers
                 Statuses = _context.Statuses.ToList(),
                 Categories = _context.Categories.ToList(),
                 Aminities = _context.Aminities.ToList(),
+                IsFeatured=_context.Products.Where(x=>x.IsFeature==true).ToList(),
                 Products = _context.Products.Include(x=>x.Status).Include(x=>x.ProductImages).Include(x=>x.Team).ToList()
 
             };
@@ -81,19 +91,17 @@ namespace QuarterTemplate.Controllers
             return PartialView("_FavouritePartial", favorites);
         }
 
-        public IActionResult ShowProducts()
+        public IActionResult GetProduct(int id)
         {
-            var productsStr = HttpContext.Request.Cookies["ProductNames"];
+            Product product = _context.Products
+                .Include(x => x.ProductImages).Include(x => x.Category)
+                .Include(x => x.Status).Include(x => x.City)
+                .Include(x => x.productAminities).ThenInclude(x => x.Aminity)
+                .FirstOrDefault(x => x.Id == id);
 
-            List<FavoriteViewModel> products = JsonConvert.DeserializeObject<List<FavoriteViewModel>>(productsStr);
+            return PartialView("_ProductModalPartial", product);
+        }
 
-            return PartialView("_FavouritePartial", products);
-        }
-        public IActionResult DeleteCookie(string key)
-        {
-            HttpContext.Response.Cookies.Delete(key);
-            return RedirectToAction("index");
-        }
 
 
     }

@@ -20,7 +20,10 @@ namespace QuarterTemplate.Models
         [StringLength(maximumLength: 2000)]
 
         public string Description { get; set; }
-        
+
+        [Required]
+        public int Rate { get; set; }
+
         public decimal HomeArea { get; set; }
         [StringLength(maximumLength:100)]
         public string BuiltDate { get; set; }

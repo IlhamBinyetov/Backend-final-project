@@ -1,6 +1,8 @@
 ﻿@model ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
+    int index = 0;
+   
 }
 
 
@@ -59,101 +61,47 @@
                                                                     <th>Date</th>
                                                                     <th>Status</th>
                                                                     <th>Total</th>
-                                                                    <th>Action</th>
+                                                                    <th>Product Name</th>
+                                                                    <th>House</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Jun 22, 2019</td>
-                                                                    <td>Pending</td>
-                                                                    <td>$3000</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>Nov 22, 2019</td>
-                                                                    <td>Approved</td>
-                                                                    <td>$200</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>Jan 12, 2020</td>
-                                                                    <td>On Hold</td>
-                                                                    <td>$990</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
+                                                                @foreach (var order in Model.Orders)
+                                                                {
+                                                                    index++;
+                                                                    
+                                                                    <tr>
+                                                                        <td>@index</td>
+                                                                        <td>@order.CreatedAt.ToString("MMMM  dd yyyy")</td>
+                                                                        <td>
+                                                                            @if (order.Status == QuarterTemplate.Models.Enums.OrderStatus.Accepted)
+                                                                            {
+                                                                                <h4><span style="background-color: green; padding: 3px; color: white; border-radius: 10px">Accepted</span></h4>
+                                                                            }
+                                                                            else if (order.Status == QuarterTemplate.Models.Enums.OrderStatus.Rejected)
+                                                                            {
+                                                                                <h4><span style="background-color: red; padding: 3px; color: white; border-radius: 10px ">Rejected</span></h4>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <h4><span style="background-color: gray; padding: 3px; color:white; border-radius: 10px">Pending</span></h4>
+                                                                            }
+                                                                        </td>
+                                                                        <td>@order.Price</td>
+                                                                        <td>@order.Product.Name</td>
+                                                                        <td><a asp-action="details" asp-controller="product" asp-route-id="@order.Product.Id">View</a></td>
+                                                                      
+                                                                    </tr>
+                                                                }
+
+
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_3">
-                                                <div class="ltn__myaccount-tab-content-inner">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Product</th>
-                                                                    <th>Date</th>
-                                                                    <th>Expire</th>
-                                                                    <th>Download</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Carsafe - Car Service PSD Template</td>
-                                                                    <td>Nov 22, 2020</td>
-                                                                    <td>Yes</td>
-                                                                    <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Carsafe - Car Service HTML Template</td>
-                                                                    <td>Nov 10, 2020</td>
-                                                                    <td>Yes</td>
-                                                                    <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Carsafe - Car Service WordPress Theme</td>
-                                                                    <td>Nov 12, 2020</td>
-                                                                    <td>Yes</td>
-                                                                    <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_4">
-                                                <div class="ltn__myaccount-tab-content-inner">
-                                                    <p>The following addresses will be used on the checkout page by default.</p>
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-12 learts-mb-30">
-                                                            <h4>Billing Address <small><a href="#">edit</a></small></h4>
-                                                            <address>
-                                                                <p><strong>Alex Tuntuni</strong></p>
-                                                                <p>
-                                                                    1355 Market St, Suite 900 <br>
-                                                                    San Francisco, CA 94103
-                                                                </p>
-                                                                <p>Mobile: (123) 456-7890</p>
-                                                            </address>
-                                                        </div>
-                                                        <div class="col-md-6 col-12 learts-mb-30">
-                                                            <h4>Shipping Address <small><a href="#">edit</a></small></h4>
-                                                            <address>
-                                                                <p><strong>Alex Tuntuni</strong></p>
-                                                                <p>
-                                                                    1355 Market St, Suite 900 <br>
-                                                                    San Francisco, CA 94103
-                                                                </p>
-                                                                <p>Mobile: (123) 456-7890</p>
-                                                            </address>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
+                                            
                                             <div class="tab-pane fade" id="liton_tab_1_5">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <p>The following addresses will be used on the checkout page by default.</p>

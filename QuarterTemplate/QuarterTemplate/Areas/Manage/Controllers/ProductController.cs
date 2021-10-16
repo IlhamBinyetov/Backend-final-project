@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace QuarterTemplate.Areas.Manage.Controllers
 {
     [Area("manage")]
-    [Authorize(Roles = "SuperAdmin, Admin")]
+    //[Authorize(Roles = "SuperAdmin, Admin")]
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;

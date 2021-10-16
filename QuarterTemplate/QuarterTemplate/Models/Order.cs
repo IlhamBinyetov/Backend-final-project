@@ -21,7 +21,7 @@ namespace QuarterTemplate.Models
         [Required]
         [StringLength(maximumLength: 100)]
         public string Email { get; set; }
-        [Required]
+      
         [StringLength(maximumLength: 25)]
         public string Phone { get; set; }
         
