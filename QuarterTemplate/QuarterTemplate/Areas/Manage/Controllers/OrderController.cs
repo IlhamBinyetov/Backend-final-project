@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using QuarterTemplate.Data;
 using QuarterTemplate.Models;
+using QuarterTemplate.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,10 +16,12 @@ namespace QuarterTemplate.Areas.Manage.Controllers
     public class OrderController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IEmailService _emailService;
 
-        public OrderController(AppDbContext context)
+        public OrderController(AppDbContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
         public IActionResult Index()
         {
@@ -44,6 +48,24 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
             order.Status = Models.Enums.OrderStatus.Accepted;
             _context.SaveChanges();
+
+            string body = string.Empty;
+
+          using (StreamReader reader = new StreamReader("wwwroot/templates/order.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            body = body.Replace("{{price}}", order.Price.ToString());
+
+            string orders = string.Empty;
+            orders = @$"<tr><td width=\""75 %\"" align=\""left\"" style =\""font - family: Open Sans, Helvetica, Arial, sans-serif; font - size: 16px; font - weight: 400; line - height: 24px; padding: 15px 10px 5px 10px;\"" > {order.ProductId} </td>
+           </tr>";
+
+            body = body.Replace("{{price}}", order.Price.ToString()).Replace("{{order}}", orders);
+
+
+            _emailService.Send(order.AppUser.Email, "Order accepted", body);
 
             return RedirectToAction("index");
         }

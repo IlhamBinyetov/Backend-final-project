@@ -195,3 +195,6 @@ C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemp
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\QuarterTemplate.genruntimeconfig.cache
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductModalPartial.cshtml.g.cs
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\QuarterTemplate.csproj.AssemblyReference.cache
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
