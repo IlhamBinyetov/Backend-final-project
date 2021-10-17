@@ -22,14 +22,23 @@ namespace QuarterTemplate.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search=null)
         {
+
+            var products = _context.Products.AsQueryable();
+            ViewBag.CurrentSearch = search;
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                products = products.Where(x => x.Name.Contains(search) || x.Team.Name.Contains(search));
+            }
+
+
             ProductViewModel productVM = new ProductViewModel
             {
-                Categories = _context.Categories.ToList(),
+                Categories = _context.Categories.Include(x=>x.Products).ToList(),
                 Aminities = _context.Aminities.ToList(),
                 Statuses = _context.Statuses.ToList(),
-                Products = _context.Products.Include(x=>x.ProductImages).Include(x=>x.City).Include(x=>x.Category).Include(x=>x.Status).Include(x=>x.Team).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).ToList()
+                Products = products.Include(x=>x.ProductImages).Include(x=>x.City).Include(x=>x.Category).Include(x=>x.Status).Include(x=>x.Team).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).ToList()
             };
 
             return View(productVM);

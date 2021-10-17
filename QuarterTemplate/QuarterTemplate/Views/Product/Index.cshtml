@@ -1,6 +1,9 @@
 ﻿@model ProductViewModel 
+@inject LayoutService service
 @{
     ViewData["Title"] = "Index";
+    Setting setting = service.GetSetting();
+    List<FavoriteViewModel> favorites = ViewBag.Favorites;
 }
 
 
@@ -29,45 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 order-lg-2 mb-100">
-                        <div class="ltn__shop-options">
-                            <ul class="justify-content-start">
-                                <li>
-                                    <div class="ltn__grid-list-tab-menu ">
-                                        <div class="nav">
-                                            <a class="active show" data-bs-toggle="tab" href="#liton_product_grid"><i class="fas fa-th-large"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_product_list"><i class="fas fa-list"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-none">
-                                    <div class="showing-product-number text-right">
-                                        <span>Showing 1–12 of 18 results</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="short-by text-center">
-                                        <select class="nice-select">
-                                            <option>Default Sorting</option>
-                                            <option>Sort by popularity</option>
-                                            <option>Sort by new arrivals</option>
-                                            <option>Sort by price: low to high</option>
-                                            <option>Sort by price: high to low</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="short-by text-center">
-                                        <select class="nice-select">
-                                            <option>Per Page: 12</option>
-                                            <option>Per Page: 20</option>
-                                            <option>Per Page: 30</option>
-                                            <option>Per Page: 50</option>
-                                            <option>Per Page: 100</option>
-                                        </select>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="liton_product_grid">
                                 <div class="ltn__product-tab-content-inner ltn__product-grid-view">
@@ -75,12 +40,13 @@
                                         <div class="col-lg-12">
                                             <!-- Search Widget -->
                                             <div class="ltn__search-widget mb-30">
-                                                <form action="#">
-                                                    <input type="text" name="search" placeholder="Search your keyword...">
+                                                <form method="get">
+                                                    <input type="text" name="search" value="@ViewBag.CurrentSearch" placeholder="Search your keyword...">
                                                     <button type="submit"><i class="fas fa-search"></i></button>
                                                 </form>
                                             </div>
                                         </div>
+                                        <!-- ltn__product-item -->
                                         @foreach (var item in Model.Products)
                                         {
                                             <div class="col-xl-6 col-sm-6 col-12">
@@ -124,14 +90,34 @@
                                                         <div class="product-hover-action">
                                                             <ul>
                                                                 <li>
-                                                                    <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                                    <a class="product-modal" data-id="@item.Id">
                                                                         <i class="flaticon-expand"></i>
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                                        <i class="flaticon-heart-1"></i>
-                                                                    </a>
+                                                                    @if (favorites != null)
+                                                                    {
+                                                                        if (!favorites.Any(fav => fav.ProductId == item.Id))
+                                                                        {
+                                                                            <a class="favorite" data-id="@item.Id" asp-action="addtofavorites" asp-controller="product" asp-route-id="@item.Id">
+                                                                                <i class="flaticon-heart-1"></i>
+                                                                            </a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <a class="delete fav" data-id="@item.Id" asp-action="deletefavorites" asp-controller="product" asp-route-id="@item.Id" title="Wishlist" style="background-color: #FF5A3C">
+                                                                                <i class="flaticon-heart-1"></i>
+                                                                            </a>
+                                                                        }
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="favorite fav" data-id="@item.Id" asp-action="addtofavorites" asp-controller="product" asp-route-id="@item.Id" title="Wishlist" style="background-color:none">
+                                                                            <i class="flaticon-heart-1 "></i>
+                                                                        </a>
+                                                                    }
+
                                                                 </li>
                                                                 <li>
                                                                     <a href="product-details.html" title="Product Details">
@@ -191,14 +177,14 @@
                                 <h4 class="ltn__widget-title">Amenities</h4>
                                 <ul>
                                     @foreach (var item in Model.Aminities)
-                                    {
+                                            {
                                         <li>
                                             <label class="checkbox-item">
                                                 @item.Title
                                                 <input type="checkbox" checked="checked">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <span class="categorey-no">@item.productAminities.Count()</span>
+                                            <span class="categorey-no">@item.productAminities?.Count()</span>
                                         </li>
                                     }
 

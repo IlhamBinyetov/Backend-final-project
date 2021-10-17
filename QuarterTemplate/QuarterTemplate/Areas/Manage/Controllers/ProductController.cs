@@ -25,7 +25,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index(string search =null)
+        public IActionResult Index(int page = 1, string search =null)
         {
             var query = _context.Products.Include(x => x.Team).AsQueryable();
             ViewBag.CurrenSearch = search;
@@ -36,11 +36,20 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             List<Product> products = _context.Products.Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).Include(x=>x.City).Include(x=>x.Category).
                 Include(x=>x.Status).Include(x=>x.ProductImages).Include(x=>x.Team).ToList();
 
+
+            ViewBag.TotalPage = Math.Ceiling(query.Count() / 4m);
+            ViewBag.SelectedPage = page;
+
+            //var pagenatedProducts = PagenatedList<Product>.Create(query.Include(x=>x.ProductImages).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity)
+            //    .Include(x=>x.Category).Include(x=>x.City).Include(x=>x.Team).Include(x=>x.Status), query.Count(),4, page );
+
             return View(products);
         }
 
-        [HttpGet]
 
+
+
+        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.Cities = _context.Cities.ToList();
