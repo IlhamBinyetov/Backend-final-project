@@ -22,7 +22,7 @@ namespace QuarterTemplate.Controllers
             _context = context;
         }
         
-        public IActionResult Index()
+        public IActionResult Index(HomeViewModel homeVm)
         {
             string str = HttpContext.Request.Cookies["Product"];
             ViewBag.Favorites = null;
@@ -33,7 +33,7 @@ namespace QuarterTemplate.Controllers
 
 
 
-            HomeViewModel homeVm = new HomeViewModel()
+             homeVm = new HomeViewModel()
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.OrderBy(x => x.Order).Skip(3).Take(3).ToList(),

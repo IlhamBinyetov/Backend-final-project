@@ -19,7 +19,7 @@ namespace QuarterTemplate.ViewModels
         public List<Product> Products { get; set; }
         public List<Setting> Settings { get; set; }
         public List<Product> IsFeatured { get; set; }
-
+        public ProductViewModel ProductVM { get; set; }
 
 
     }

@@ -22,18 +22,36 @@ namespace QuarterTemplate.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(string search=null)
+        public IActionResult Index(ProductViewModel productVM)
         {
+            FilterViewModel filterVM = productVM.Filter;
+            string search = filterVM?.Search;
+            int? cityId = filterVM?.CityId;
+            int? statusId = filterVM?.StatusId;
+            int? categoryId = filterVM?.CategoryId;
 
-            var products = _context.Products.AsQueryable();
-            ViewBag.CurrentSearch = search;
+
+            var products = _context.Products.AsQueryable(); 
             if (!string.IsNullOrWhiteSpace(search))
             {
                 products = products.Where(x => x.Name.Contains(search) || x.Team.Name.Contains(search));
             }
 
+            if(cityId != null)
+            {
+                products = products.Where(p => p.CityId == cityId);
+            }
+            if(statusId != null)
+            {
+                products = products.Where(p => p.StatusId == statusId);
+            }
+            if(categoryId != null)
+            {
+                products = products.Where(p => p.CategoryId == categoryId);
+            }
 
-            ProductViewModel productVM = new ProductViewModel
+
+            productVM = new ProductViewModel
             {
                 Categories = _context.Categories.Include(x=>x.Products).ToList(),
                 Aminities = _context.Aminities.ToList(),

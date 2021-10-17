@@ -12,6 +12,7 @@ namespace QuarterTemplate.ViewModels
         public List<Aminity> Aminities { get; set; }
         public List<Status> Statuses { get; set; }
         public List<Product> Products { get; set; }
+        public FilterViewModel Filter { get; set; }
 
     }
 }
