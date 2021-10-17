@@ -33,17 +33,10 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             if (!string.IsNullOrWhiteSpace(search))
                 query = query.Where(x => x.Name.Contains(search) || x.Team.Name.Contains(search));
 
-            List<Product> products = _context.Products.Include(x=>x.productAminities).ThenInclude(x=>x.Aminity).Include(x=>x.City).Include(x=>x.Category).
-                Include(x=>x.Status).Include(x=>x.ProductImages).Include(x=>x.Team).ToList();
+            var pagenatedProducts = PagenatedList<Product>.Create(query.Include(x => x.ProductImages).Include(x => x.productAminities).ThenInclude(x => x.Aminity)
+                .Include(x => x.Category).Include(x => x.City).Include(x => x.Team).Include(x => x.Status), 4, page);
 
-
-            ViewBag.TotalPage = Math.Ceiling(query.Count() / 4m);
-            ViewBag.SelectedPage = page;
-
-            //var pagenatedProducts = PagenatedList<Product>.Create(query.Include(x=>x.ProductImages).Include(x=>x.productAminities).ThenInclude(x=>x.Aminity)
-            //    .Include(x=>x.Category).Include(x=>x.City).Include(x=>x.Team).Include(x=>x.Status), query.Count(),4, page );
-
-            return View(products);
+            return View(pagenatedProducts);
         }
 
 
