@@ -61,6 +61,8 @@ namespace QuarterTemplate.Models
         [NotMapped]
         public List<int> ProductImageIds { get; set; } = new List<int>();
 
+        public List<Comment> Comments { get; set; }
+
 
 
     }

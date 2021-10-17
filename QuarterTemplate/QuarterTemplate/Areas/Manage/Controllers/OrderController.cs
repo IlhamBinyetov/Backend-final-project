@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuarterTemplate.Data;
 using QuarterTemplate.Models;
 using QuarterTemplate.Services;
@@ -43,7 +44,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
         public IActionResult Accept(int id)
         {
-            Order order = _context.Orders.FirstOrDefault(x => x.Id == id);
+            Order order = _context.Orders.Include(x=>x.AppUser).FirstOrDefault(x => x.Id == id);
             if (order == null) return NotFound();
 
             order.Status = Models.Enums.OrderStatus.Accepted;
@@ -59,7 +60,8 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             body = body.Replace("{{price}}", order.Price.ToString());
 
             string orders = string.Empty;
-            orders = @$"<tr><td width=\""75 %\"" align=\""left\"" style =\""font - family: Open Sans, Helvetica, Arial, sans-serif; font - size: 16px; font - weight: 400; line - height: 24px; padding: 15px 10px 5px 10px;\"" > {order.ProductId} </td>
+
+            orders = @$"<tr><td width=\""75 %\"" align=\""left\"" style =\""font - family: Open Sans, Helvetica, Arial, sans-serif; font - size: 16px; font - weight: 400; line - height: 24px; padding: 15px 10px 5px 10px;\"" > {order.FullName} </td>
            </tr>";
 
             body = body.Replace("{{price}}", order.Price.ToString()).Replace("{{order}}", orders);
