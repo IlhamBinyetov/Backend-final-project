@@ -1,0 +1,42 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Index";
+    int order = 1;
+}
+
+
+<div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1>Sale Managers:</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact mail</th>
+                <th scope="col">Support mail</th>
+                <th scope="col">About Page Picture</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="row">@order</th>
+                <td>@Model.MainPhone</td>
+                <td>@Model.Location1</td>
+                <td>@Model.MainEmail</td>
+                <td>@Model.SecondEmail</td>
+                <td><img src="~/uploads/settings/@Model.BackgroundImage" style="max-width:100px" /></td>
+                <td>
+                    <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+

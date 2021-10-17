@@ -199,3 +199,6 @@ C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemp
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Role\Index.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Role\Edit.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Index.cshtml.g.cs
+C:\Users\binye\Desktop\BackEnd\Backend-final-project\QuarterTemplate\QuarterTemplate\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Role\Create.cshtml.g.cs

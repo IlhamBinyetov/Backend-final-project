@@ -26,7 +26,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
         }
         public IActionResult Index()
         {
-            List<Order> orders = _context.Orders.ToList();
+            List<Order> orders = _context.Orders.OrderByDescending(x => x.CreatedAt).Include(x => x.Product).Include(x => x.AppUser).ToList();
 
 
             return View(orders);

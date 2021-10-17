@@ -24,6 +24,13 @@ namespace QuarterTemplate.Areas.Manage.Controllers
         }
 
 
+        public IActionResult Index()
+        {
+            Setting settings = _context.Settings.FirstOrDefault();
+            return View(settings);
+        }
+
+
         [HttpGet]
         public IActionResult Edit()
         {

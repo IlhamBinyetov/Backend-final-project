@@ -141,9 +141,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             };
 
            var result =  await _userManager.CreateAsync(admin, AdminVM.Password);
-           var roleResult =  await _userManager.AddToRoleAsync(admin, "Admin");
-
-
+            
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
@@ -154,6 +152,9 @@ namespace QuarterTemplate.Areas.Manage.Controllers
                 return View();
             }
 
+
+            await _userManager.AddToRoleAsync(admin, "Admin");
+            await _signInManager.SignInAsync(admin, true);
 
             return RedirectToAction("index", "dashboard");
         }
