@@ -9,6 +9,8 @@ namespace QuarterTemplate.Areas.Manage.ViewModels
 {
     public class AdminViewModel
     {
+        public string Id { get; set; }
+
         [Required]
         [StringLength(maximumLength: 50, MinimumLength = 6, ErrorMessage = "min 6, max 50 ola biler")]
         public string UserName { get; set; }

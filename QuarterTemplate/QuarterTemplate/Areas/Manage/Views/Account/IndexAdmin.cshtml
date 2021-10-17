@@ -1,0 +1,39 @@
+﻿@model List<AdminViewModel>
+
+@{
+    ViewData["Title"] = "IndexAdmin";
+}
+
+<h1>IndexAdmin</h1>
+
+<p>
+    <a asp-action="createadmin" asp-controller="account">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p>@item.FullName</p>
+                </td>
+                <td>
+                    <p>@item.UserName</p>
+                </td>
+                <td>
+                    <p>@item.Email</p>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "editadmin", new { AdminVM = item }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "delete", new { name =item.UserName } )
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace QuarterTemplate.Areas.Manage.Controllers
 {
     [Area("manage")]
-    
+
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -21,7 +21,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
         public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
-           _roleManager = roleManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
         }
         public async Task<IActionResult> Index()
@@ -60,7 +60,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        
+
         public IActionResult Login()
         {
             return View();
@@ -131,7 +131,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             }
 
 
-             admin = new AppUser
+            admin = new AppUser
             {
                 IsAdmin = true,
                 Fullname = AdminVM.FullName,
@@ -140,8 +140,8 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
             };
 
-           var result =  await _userManager.CreateAsync(admin, AdminVM.Password);
-            
+            var result = await _userManager.CreateAsync(admin, AdminVM.Password);
+
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
@@ -174,12 +174,12 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
         [HttpPost]
         [Authorize(Roles = "SuperAdmin")]
-        public async Task<IActionResult> EditAdmin(string id, AdminViewModel AdminVM)
+        public async Task<IActionResult> EditAdmin(AdminViewModel AdminVM)
         {
 
             if (!ModelState.IsValid) return View();
 
-            AppUser existUser = await _userManager.FindByIdAsync(id);
+            AppUser existUser = await _userManager.FindByIdAsync(AdminVM.Id);
 
             if (existUser == null) return NotFound();
 
@@ -188,7 +188,7 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             existUser.Email = AdminVM.Email;
 
             await _userManager.UpdateAsync(existUser);
-            
+
             return RedirectToAction("index");
         }
 
@@ -201,9 +201,28 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             await _userManager.DeleteAsync(deleteadmin);
 
 
-            return RedirectToAction("index");
+            return RedirectToAction("IndexAdmin");
         }
 
+        public IActionResult IndexAdmin()
+        {
+            var admins = _userManager.Users.Where(x => x.IsAdmin == true).ToList();
 
+            List<AdminViewModel> adminList = new List<AdminViewModel>();
+
+            foreach (var item in admins)
+            {
+                adminList.Add(new AdminViewModel()
+                {
+                    Id = item.Id,
+                    UserName = item.UserName,
+                    FullName = item.Fullname,
+                    Email = item.Email
+                });
+            }
+
+
+            return View(adminList);
+        }
     }
 }
