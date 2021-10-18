@@ -10,5 +10,9 @@ namespace QuarterTemplate.Models
     {
         public string Fullname { get; set; }
         public bool IsAdmin { get; set; } 
+        public List<Order> Orders { get; set; }
+
+        public string ConnectionId { get; set; }
+        public DateTime LastConnectedDate { get; set; }
     }
 }

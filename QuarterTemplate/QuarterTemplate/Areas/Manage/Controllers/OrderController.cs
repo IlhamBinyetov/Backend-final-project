@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using QuarterTemplate.Data;
 using QuarterTemplate.Models;
@@ -18,11 +19,13 @@ namespace QuarterTemplate.Areas.Manage.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IEmailService _emailService;
+        private readonly IHubContext<QuarterHub> _hubContext;
 
-        public OrderController(AppDbContext context, IEmailService emailService)
+        public OrderController(AppDbContext context, IEmailService emailService, IHubContext<QuarterHub> hubContext)
         {
             _context = context;
             _emailService = emailService;
+            _hubContext = hubContext;
         }
         public IActionResult Index()
         {
@@ -42,13 +45,16 @@ namespace QuarterTemplate.Areas.Manage.Controllers
         }
 
 
-        public IActionResult Accept(int id)
+        public async Task<IActionResult> Accept(int id)
         {
             Order order = _context.Orders.Include(x=>x.AppUser).FirstOrDefault(x => x.Id == id);
             if (order == null) return NotFound();
 
             order.Status = Models.Enums.OrderStatus.Accepted;
             _context.SaveChanges();
+
+            await _hubContext.Clients.All.SendAsync("OrderAccepted");
+
 
             string body = string.Empty;
 

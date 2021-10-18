@@ -206,11 +206,12 @@ namespace QuarterTemplate.Areas.Manage.Controllers
 
         public IActionResult IndexAdmin()
         {
-            var admins = _userManager.Users.Where(x => x.IsAdmin == true).ToList();
+            var members = _userManager.Users.Where(x => x.IsAdmin == true).ToList();
 
             List<AdminViewModel> adminList = new List<AdminViewModel>();
+            
 
-            foreach (var item in admins)
+            foreach (var item in members)
             {
                 adminList.Add(new AdminViewModel()
                 {

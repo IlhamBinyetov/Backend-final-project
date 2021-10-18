@@ -31,9 +31,22 @@
     <link rel="stylesheet" href="~/assets/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
 </head>
 
 <body>
+    @if (TempData["Success"] != null)
+    {
+        if ((bool)TempData["Success"] == true)
+        {
+            <input type="hidden" id="success" />
+        }
+        else
+        {
+            <input type="hidden" id="error" />
+        }
+    }
     <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
@@ -222,9 +235,9 @@
         </header>
         <!-- HEADER AREA END -->
         <!-- Utilize Cart Menu Start -->
-        <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu modal-favorite" >
-                    @await Html.PartialAsync("_FavouritePartial", favItems)
-                
+        <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu modal-favorite">
+            @await Html.PartialAsync("_FavouritePartial", favItems)
+
         </div>
         <!-- Utilize Cart Menu End -->
         <!-- Utilize Mobile Menu Start -->
@@ -383,7 +396,7 @@
                                         <img src="~/uploads/settings/@service.GetSetting().FooterLogo" alt="Logo">
                                     </div>
                                 </div>
-                            
+
                                 <div class="footer-address">
                                     <ul>
                                         <li>
@@ -525,7 +538,7 @@
                         <div class="modal-body">
                             <div class="ltn__quick-view-modal-inner">
                                 <div class="modal-product-item">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -621,21 +634,41 @@
         <!-- MODAL AREA END -->
 
     </div>
-                <!-- Body main wrapper end -->
-                <!-- preloader area start -->
-                <div class="preloader d-none" id="preloader">
-                    <div class="preloader-inner">
-                        <div class="spinner">
-                            <div class="dot1"></div>
-                            <div class="dot2"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- preloader area end -->
-                <!-- All JS Plugins -->
-                <script src="~/assets/js/plugins.js"></script>
-                <!-- Main JS -->
-                <script src="~/assets/js/main.js"></script>
+    <!-- Body main wrapper end -->
+    <!-- preloader area start -->
+    <div class="preloader d-none" id="preloader">
+        <div class="preloader-inner">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader area end -->
+    <!-- All JS Plugins -->
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Main JS -->
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+
+    <script>
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/quarterhub").build();
+
+        connection.start().then(function () {
+            console.log(connection.connectionId)
+        });
+
+        connection.on("OrderAccepted", function () {
+            console.log("accepteds")
+            toastr["success"]("Your order has been accepted!")
+        });
+    </script>
+
 
 </body>
 </html>

@@ -24,6 +24,14 @@ namespace QuarterTemplate.Controllers
         
         public IActionResult Index(HomeViewModel homeVm)
         {
+            List<Order> orders = _context.Orders.Where(x => x.Status == Models.Enums.OrderStatus.Accepted).ToList();
+
+            double sumOfAcceotedOrders = orders.Count();
+
+
+            ViewBag.AcceptedOrders = sumOfAcceotedOrders;
+
+
             string str = HttpContext.Request.Cookies["Product"];
             ViewBag.Favorites = null;
             if (str != null)
@@ -33,7 +41,7 @@ namespace QuarterTemplate.Controllers
 
 
 
-             homeVm = new HomeViewModel()
+            homeVm = new HomeViewModel()
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.OrderBy(x => x.Order).Skip(3).Take(3).ToList(),
@@ -44,8 +52,10 @@ namespace QuarterTemplate.Controllers
                 Statuses = _context.Statuses.ToList(),
                 Categories = _context.Categories.ToList(),
                 Aminities = _context.Aminities.ToList(),
-                IsFeatured=_context.Products.Where(x=>x.IsFeature==true).ToList(),
-                Products = _context.Products.Include(x=>x.Status).Include(x=>x.ProductImages).Include(x=>x.Team).ToList()
+                IsFeatured = _context.Products.Where(x => x.IsFeature == true).ToList(),
+                Products = _context.Products.Include(x => x.Status).Include(x => x.ProductImages).Include(x => x.Team).ToList(),
+
+                LastSoldProduct = _context.Orders.OrderByDescending(x => x.Id).FirstOrDefault().Product
 
             };
 

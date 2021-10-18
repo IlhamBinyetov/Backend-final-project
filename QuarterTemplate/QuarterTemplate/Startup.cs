@@ -44,11 +44,15 @@ namespace QuarterTemplate
                 options.Password.RequireNonAlphanumeric = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
+          
+
             services.AddScoped<LayoutService>();
             services.AddScoped<IEmailService, EmailService>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
+
+            services.AddSignalR();
 
         }
 
@@ -95,6 +99,8 @@ namespace QuarterTemplate
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<QuarterHub>("/quarterhub");
             });
 
           

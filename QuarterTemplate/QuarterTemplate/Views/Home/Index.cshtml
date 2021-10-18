@@ -255,7 +255,7 @@
                             <div class="counter-icon">
                                 <i class="flaticon-select"></i>
                             </div>
-                            <h1><span class="counter">560</span><span class="counterUp-icon">+</span> </h1>
+                            <h1><span class="counter">@Model.Products.Sum(x=>x.HomeArea)</span><span class="counterUp-icon">+</span> </h1>
                             <h6>Total Area Sq</h6>
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                             <div class="counter-icon">
                                 <i class="flaticon-office"></i>
                             </div>
-                            <h1><span class="counter">197</span><span class="counterUp-letter">K</span><span class="counterUp-icon">+</span> </h1>
+                            <h1><span class="counter">@ViewBag.AcceptedOrders</span><span class="counterUp-letter"></span><span class="counterUp-icon">+</span> </h1>
                             <h6>Apartments Sold</h6>
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                             <div class="counter-icon">
                                 <i class="flaticon-excavator"></i>
                             </div>
-                            <h1><span class="counter">268</span><span class="counterUp-icon">+</span> </h1>
+                            <h1><span class="counter">@Model.Products.Count</span><span class="counterUp-icon">+</span> </h1>
                             <h6>Total Constructions</h6>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
                             <div class="counter-icon">
                                 <i class="flaticon-armchair"></i>
                             </div>
-                            <h1><span class="counter">340</span><span class="counterUp-icon">+</span> </h1>
+                            <h1><span class="counter">@Model.Products.Sum(x=>x.RoomCount)</span><span class="counterUp-icon">+</span> </h1>
                             <h6>Apartio Rooms</h6>
                         </div>
                     </div>
@@ -312,44 +312,39 @@
                             </ul>
                             <ul class="ltn__list-item-2 ltn__list-item-2-before ltn__flat-info">
                                 <li>
-                                    <span>3 <i class="flaticon-bed"></i></span>
+                                    <span>@Model.LastSoldProduct.BedCount <i class="flaticon-bed"></i></span>
                                     Bedrooms
                                 </li>
                                 <li>
-                                    <span>2 <i class="flaticon-clean"></i></span>
+                                    <span>@Model.LastSoldProduct.BathCount<i class="flaticon-clean"></i></span>
                                     Bathrooms
                                 </li>
                                 <li>
-                                    <span>2 <i class="flaticon-car"></i></span>
+                                    <span>@Model.LastSoldProduct.productAminities<i class="flaticon-car"></i></span>
                                     Car parking
                                 </li>
                                 <li>
-                                    <span>3450 <i class="flaticon-square-shape-design-interface-tool-symbol"></i></span>
+                                    <span>@Model.LastSoldProduct.HomeArea<i class="flaticon-square-shape-design-interface-tool-symbol"></i></span>
                                     square Ft
                                 </li>
                             </ul>
                             <ul class="ltn__list-item-2 ltn__list-item-2-before--- ltn__list-item-2-img mb-50">
-                                <li>
-                                    <a href="img/img-slide/11.jpg" data-rel="lightcase:myCollection">
-                                        <img src="~/assets/images/img-slide/11.jpg" alt="Image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="img/img-slide/12.jpg" data-rel="lightcase:myCollection">
-                                        <img src="~/assets/images/img-slide/12.jpg" alt="Image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="img/img-slide/13.jpg" data-rel="lightcase:myCollection">
-                                        <img src="~/assets/images/img-slide/13.jpg" alt="Image">
-                                    </a>
-                                </li>
+                                @foreach (var item in Model.LastSoldProduct.ProductImages.Where(x=>x.IsPoster==false).Take(3))
+                                {
+                                    <li>
+                                        <a href="~/uploads/products/@item.Image" data-rel="lightcase:myCollection">
+                                            <img src="~/uploads/products/@item.Image" alt="Image">
+                                        </a>
+                                    </li>
+                                }
+
+
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 align-self-center">
                         <div class="about-us-img-wrap about-img-right">
-                            <img src="~/assets/images/others/9.png" alt="About Us Image">
+                            <img src="~/uploads/products/@Model.LastSoldProduct.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="About Us Image">
                         </div>
                     </div>
                 </div>
