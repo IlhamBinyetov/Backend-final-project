@@ -53,7 +53,12 @@ namespace QuarterTemplate.Areas.Manage.Controllers
             order.Status = Models.Enums.OrderStatus.Accepted;
             _context.SaveChanges();
 
-            await _hubContext.Clients.All.SendAsync("OrderAccepted");
+
+            if (order.AppUser?.ConnectionId != null)
+            {
+                await _hubContext.Clients.Client(order.AppUser.ConnectionId).SendAsync("OrderAccepted");
+
+            }
 
 
             string body = string.Empty;

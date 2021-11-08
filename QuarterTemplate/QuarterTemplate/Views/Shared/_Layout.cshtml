@@ -1,4 +1,5 @@
 ﻿@inject LayoutService service  
+@inject UserManager<AppUser> userManager 
 @{
     Setting setting = service.GetSetting();
 
@@ -6,6 +7,8 @@
     List<FavoriteViewModel> favItems = service.GetFavItems();
     double totalCount = 0;
     totalCount = favItems.Sum(x => x.Price* x.Count);
+
+    AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
 
 }
 

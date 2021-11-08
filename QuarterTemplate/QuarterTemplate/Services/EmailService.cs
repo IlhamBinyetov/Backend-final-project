@@ -45,7 +45,7 @@ namespace QuarterTemplate.Services
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("binyetov631@gmail.com", "7276522i");
+                    smtp.Credentials = new NetworkCredential("binyetov631@gmail.com", "xyz");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
